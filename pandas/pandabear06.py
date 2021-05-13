@@ -4,8 +4,9 @@ Creating a DataFrame from a timeseries dataset and working with methods to displ
 """
 
 import pandas as pd
+import argparse
 
-def main():
+def main(args):
     opsd_daily = pd.read_csv('netTraffic.csv') # this opens the csv dataset
     
     opsd_daily.shape
@@ -46,7 +47,13 @@ def main():
     # display a random sampling of 5 rows
     input("\nPress ENTER to look at a random sampling from 5 rows after adding the Year, Month and Weekday Name columns")
     print(opsd_daily.sample(5, random_state=0))
-    
+
+
+def parze():
+    parser = argparse.AugmentParser(description="Sort by Year")
+    parser.add_argument("-y", "--year", type=int, help="Please enter Year")
+    return parser.parse_args()
 
 if __name__ == "__main__":
-    main()
+    args = parze()
+    main(args)
